@@ -45,7 +45,6 @@ sudo apt-get install zsh
 # Oh-My-ZSH
 curl -L http://install.ohmyz.sh | sh
 
-
 # Ruby
 sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
 
@@ -144,6 +143,19 @@ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 sudo add-apt-repository ppa:webupd8team/sublime-text-3
 sudo apt-get update
 sudo apt-get install sublime-text-installer
+
+
+# Adds aliases to ~/.zshrc
+echo "
+# Handy Aliases
+alias clr=\"clear\"
+alias gac=\"g add -A && g commit\"
+alias gacp=\"g add -A && g commit && g push\"" >> ~/.zshrc
+
+echo "We've set up some handy aliases for you in ~/.zshrc:
+* clr = clear
+* gac = g add -A && g commit
+* gacp = g add -A && g commit && g push"
 
 
 fancy_echo 32 "✔ Looks like we're done here. Did everything go well? How about some tea?"
