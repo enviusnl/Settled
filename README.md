@@ -13,7 +13,7 @@ Sublime Text 3
 
 ## Usage
 ```
-curl https://raw.githubusercontent.com/enviusnl/Settled/master/settled.bash | bash
+wget https://raw.githubusercontent.com/enviusnl/Settled/master/settled.bash && bash settled.bash
 ```
 
 ## Editing
