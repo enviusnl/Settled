@@ -16,5 +16,5 @@ Sublime Text 3
 wget -qO- https://raw.githubusercontent.com/enviusnl/Settled/master/settled.bash | bash
 ```
 
-## Editing
+## Customizing
 If you would like to change what Settled installs you can do so by cloning this repo and editing the [`settled.bash`](https://github.com/enviusnl/Settled/blob/master/settled.bash) file.
