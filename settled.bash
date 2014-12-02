@@ -8,7 +8,7 @@ ask_input(){
 }
 
 printf "
-\033[1;32mSettled\033[0m will turn your computer into an \033[1;32mawesome front-end tool\033[0m. 
+\033[1;32mSettled\033[0m will turn your Ubuntu 14.04 machine into an \033[1;32mawesome front-end tool\033[0m. 
 
 It will install the following software. What it installs can be customized by editing this file.
 
