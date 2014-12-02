@@ -25,9 +25,9 @@ check_installed_gem(){
 
 
 printf "
-\033[1;32mSettled\033[0m will turn your Ubuntu 14.04 machine into an \033[1;32mawesome front-end tool\033[0m. 
+\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an \033[1;32mawesome front-end tool\033[0m.
 
-It will install the following software. What it installs can be customized by editing this file.
+It will install the following packages. What it installs can be customized by editing this file.
 
 cURL, Vim, Oh-My-ZSH,
 Git, Phonegap, Heroku Toolbelt,
