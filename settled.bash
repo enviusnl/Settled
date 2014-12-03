@@ -83,11 +83,6 @@ if [ "$OS" == "Linux" ]; then
 		sudo apt-get install curl
 	fi
 
-  # Git
-  if ! check_installed git; then
-    sudo apt-get install git
-  fi
-
 	# Ruby
 	if ! check_installed ruby; then
 		sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
@@ -102,6 +97,11 @@ if [ "$OS" == "Linux" ]; then
 
 		echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 	fi
+
+  # Git
+  if ! check_installed git; then
+    sudo apt-get install git
+  fi
 
 else
 	# Mac OS X: install the xcode dev tools
