@@ -73,35 +73,13 @@ done
 
 
 if [ "$OS" == "Linux" ]; then
-	# if Linux, check if Ruby, cURL and Git are installed
+	# if Linux, check if dependencies are installed
 
-	# update dependencies
+	# update apt-get
 	sudo apt-get update
 
-	# cURL
-	if ! check_installed curl; then
-		sudo apt-get install curl
-	fi
-
-	# Ruby
-	if ! check_installed ruby; then
-		sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
-
-		cd /tmp/
-		wget http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz
-		tar -xzvf ruby-2.1.3.tar.gz
-		cd ruby-2.1.3/
-		./configure
-		make
-		sudo make install
-
-		echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-	fi
-
-  # Git
-  if ! check_installed git; then
-    sudo apt-get install git
-  fi
+	# install dependencies, including cURL and Ruby
+	sudo apt-get install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
 
 else
 	# Mac OS X: install the xcode dev tools
@@ -160,7 +138,7 @@ fancy_echo 32 "✔ Sass and Compass installed, Homebrew awesomeness coming up...
 
 # loop Homebrew packages
 # install whats not installed already
-BREW_PKGS=("vim" "node" "heroku-toolbelt")
+BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
 	if ! check_installed $name; then
