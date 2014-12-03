@@ -23,53 +23,70 @@ check_installed_gem(){
   fi
 }
 
+check_zsh_alias(){
+  if cat ~/.zshrc | grep "alias $1" > /dev/null; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+
+# store OS name in variable
+# throw error when the OS is not compatable
+if [ "$(uname)" == "Darwin" ]; then
+  OS="Mac OS X"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  OS="Linux"
+else
+  fancy_echo 31 "✘ We're sorry but it looks like you're running an unknown OS.
+Settled supports Mac OS X and Linux. Post an issue with your OS type in the repository
+and we'll look into it."
+  exit 1
+fi
+
 
 printf "
 \033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an \033[1;32mawesome front-end tool\033[0m.
 
-It will install the following packages. What it installs can be customized by editing this file.
+What it installs can be customized by editing this file.
+By default it will install the following packages:
 
 cURL, Vim, Oh-My-ZSH,
 Git, Phonegap, Heroku Toolbelt,
 Ruby, SASS, Compass, Node.js,
-Apache2, MySQL, PHP,
 Grunt-cli, Gulp, Bower, Yeoman,
-Sublime Text 3
+
+If you're on Linux we will prompt you to ask if you also want to install:
+
+Apache2, MySQL, PHP, Sublime Text 3
+
 
 Continue?
 "
 select yn in Yes No; do
-	case $yn in
-		Yes) echo "Continuing..."; break;;
-		No) exit;;
-	esac
+  case $yn in
+    Yes) echo "Continuing..."; break;;
+    No) exit;;
+  esac
 done
-
-
-# Store OS name in variable
-# Throw error when the OS os not compatable
-if [ "$(uname)" == "Darwin" ]; then
-	OS="Mac OS X"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	OS="Linux"
-else
-	fancy_echo 31 "✘ We're sorry but it looks like you're running an unknown OS.
-Settled supports Mac OS X and Linux. Post an issue with your OS type in the repository
-and we'll look into it."
-	exit 1
-fi
 
 
 if [ "$OS" == "Linux" ]; then
 	# if Linux, check if Ruby, cURL and Git are installed
 
-	# Update dependencies
+	# update dependencies
 	sudo apt-get update
 
 	# cURL
 	if ! check_installed curl; then
 		sudo apt-get install curl
 	fi
+
+  # Git
+  if ! check_installed git; then
+    sudo apt-get install git
+  fi
 
 	# Ruby
 	if ! check_installed ruby; then
@@ -84,11 +101,6 @@ if [ "$OS" == "Linux" ]; then
 		sudo make install
 
 		echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-	fi
-
-	# Git
-	if ! check_installed git; then
-		sudo apt-get install git
 	fi
 
 else
@@ -174,66 +186,68 @@ done
 fancy_echo 32 "✔ All NPM packages installed, Moving on..."
 
 
-# apt-get packages are not always easy to remove
-# so prompt user to ask if we should install them
-ask_input "apache2, mysql-server, php5-mysql, php5, libapache2-mod-php5, php5-mcrypt,
-sublime-text-installer
+# if on Linux:
+# prompt user to ask if we should install apt-get packages
+if [ "$OS" == "Linux" ]; then
+  ask_input "apache2, mysql-server, php5-mysql, php5, libapache2-mod-php5, php5-mcrypt,
+  sublime-text-installer
 
-Would you like to also install and setup the above apt-get packages? (y/n) "
+  Would you like to also install and setup the above apt-get packages? (y/n) "
 
-if [ "$answer" == "y" ]; then
+  if [ "$answer" == "y" ]; then
 
-	# install Apache2
-	sudo apt-get install apache2
+  	# install Apache2
+  	sudo apt-get install apache2
 
-	# install MySQL
-	sudo apt-get install mysql-server php5-mysql
-	sudo mysql_install_db
-	sudo mysql_secure_installation
+  	# install MySQL
+  	sudo apt-get install mysql-server php5-mysql
+  	sudo mysql_install_db
+  	sudo mysql_secure_installation
 
-	# install PHP
-	sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+  	# install PHP
+  	sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
 
-	# edit /var/www directory config. index.php has to be on start.
-	printf "
+  	# edit /var/www directory config. index.php has to be on start.
+  	printf "
 
-	Alright listen up soldier! We're going into the Apache config now. When you're in there I
-	want you to search for the code below and move index.php to the front of the list.
+  	Alright listen up soldier! We're going into the Apache config now. When you're in there I
+  	want you to search for the code below and move index.php to the front of the list.
 
-	<IfModule mod_dir.c>
-	    DirectoryIndex index.html index.cgi index.pl \033[1;31mindex.php\033[0m index.xhtml index.htm
-	</IfModule>
+  	<IfModule mod_dir.c>
+  	    DirectoryIndex index.html index.cgi index.pl \033[1;31mindex.php\033[0m index.xhtml index.htm
+  	</IfModule>
 
-	<IfModule mod_dir.c>
-	    DirectoryIndex \033[1;32mindex.php\033[0m index.html index.cgi index.pl index.xhtml index.htm
-	</IfModule>
+  	<IfModule mod_dir.c>
+  	    DirectoryIndex \033[1;32mindex.php\033[0m index.html index.cgi index.pl index.xhtml index.htm
+  	</IfModule>
 
-	"
-	echo "Are you ready to move out!?"
-	select yn in "Sir, yes sir!" "Cancel all of this and send me home!" "Nah dude, I'm gonna do this later..."; do
-		case $yn in
-			"Sir, yes sir!") sudo vi /etc/apache2/mods-enabled/dir.conf; break;;
-			"Cancel all of this and send me home!") exit;;
-			"Nah dude, I'm gonna do this later...") echo "Continuing..."; break;;
-		esac
-	done
+  	"
+  	echo "Are you ready to move out!?"
+  	select yn in "Sir, yes sir!" "Cancel all of this and send me home!" "Nah dude, I'm gonna do this later..."; do
+  		case $yn in
+  			"Sir, yes sir!") sudo vi /etc/apache2/mods-enabled/dir.conf; break;;
+  			"Cancel all of this and send me home!") exit;;
+  			"Nah dude, I'm gonna do this later...") echo "Continuing..."; break;;
+  		esac
+  	done
 
-	# Restart localhost
-	sudo service apache2 restart
-
-
-	# Sublime
-	sudo add-apt-repository ppa:webupd8team/sublime-text-3
-	sudo apt-get update
-	sudo apt-get install sublime-text-installer
+  	# Restart localhost
+  	sudo service apache2 restart
 
 
-	fancy_echo 32 "✔ apt-get packages installed, Let's configure some stuff..."
+  	# Sublime
+  	sudo add-apt-repository ppa:webupd8team/sublime-text-3
+  	sudo apt-get update
+  	sudo apt-get install sublime-text-installer
 
-else
 
-	fancy_echo 32 "✔ Okidoki, Let's configure some stuff then..."
+  	fancy_echo 32 "✔ apt-get packages installed, Let's configure some stuff..."
 
+  else
+
+  	fancy_echo 32 "✔ Okidoki, Let's configure some stuff then..."
+
+  fi
 fi
 
 
@@ -245,17 +259,32 @@ git config --global user.email "$answer"
 echo "Continuing..."
 
 
-# Adds aliases to ~/.zshrc
-echo "
-# Handy Aliases
-alias clr=\"clear\"
-alias gac=\"g add -A && g commit\"
-alias gacp=\"g add -A && g commit && g push\"" >> ~/.zshrc
+# adds aliases to ~/.zshrc
+# if they're not already there
+ZSH_ALIASES=(
+  "clr:clear"
+  "gac:g add -A && g commit"
+  "gacp:g add -A && g commit && g push"
+)
+ZSH_ALIASES_START=false
+for keyval in "${ZSH_ALIASES[@]}"
+do
+  name="${keyval%%:*}"
+  cmd="${keyval##*:}"
 
-echo "We've set up some handy aliases for you in ~/.zshrc:
-* clr = clear
-* gac = g add -A && g commit
-* gacp = g add -A && g commit && g push"
+  if ! check_zsh_alias $name; then
+    if ! $ZSH_ALIASES_START; then
+      echo "
+# Handy aliases, set by Settled (http://github.com/enviusnl/Settled)" >> ~/.zshrc
+      ZSH_ALIASES_START=true
+    fi
+    echo "alias $name=\"$cmd\"" >> ~/.zshrc
+  fi
+done
+
+if $ZSH_ALIASES_START; then
+  fancy_echo 35 "We've set up some handy aliases for you in ~/.zshrc"
+fi
 
 
 fancy_echo 32 "✔ Looks like we're done here. Did everything go well? How about some tea?"
