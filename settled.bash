@@ -46,8 +46,7 @@ and we'll look into it."
 fi
 
 
-printf "
-\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an \033[1;32mawesome front-end tool\033[0m.
+printf "\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an \033[1;32mawesome front-end tool\033[0m.
 
 What it installs can be customized by editing this file.
 By default it will install the following packages:
@@ -85,7 +84,7 @@ else
 fi
 
 
-fancy_echo 32 "✔ Homebrew dependencies installed, installing Oh-My-ZSH..."
+fancy_echo 32 "✔ Homebrew dependencies installed, Checking Oh-My-ZSH..."
 
 
 # install oh-my-zsh if not installed already
@@ -101,10 +100,11 @@ if ! check_installed zsh; then
 		# Mac OS X: install 'the easy way'
 		curl -L http://install.ohmyz.sh | sh
 	fi
+	
+	fancy_echo 32 "✔ Oh-My-ZSH installed, installing or updating Homebrew..."
+else
+	fancy_echo 32 "✔ Oh-My-ZSH already installed, installing or updating Homebrew..."	
 fi
-
-
-fancy_echo 32 "✔ Oh-My-ZSH installed, installing or updating Homebrew..."
 
 
 # install Homebrew if not already installed
