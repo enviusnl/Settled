@@ -104,20 +104,7 @@ else
 fi
 
 
-fancy_echo 32 "✔ Oh-My-ZSH installed, installing Sass and Compass..."
-
-
-# install Sass & Compass
-if ! check_installed_gem sass; then
-	sudo gem install sass
-fi
-
-if ! check_installed_gem compass; then
-	sudo gem install compass
-fi
-
-
-fancy_echo 32 "✔ Sass and Compass installed, installing or updating Homebrew..."
+fancy_echo 32 "✔ Oh-My-ZSH installed, installing or updating Homebrew..."
 
 
 # install Homebrew if not already installed
@@ -142,17 +129,19 @@ else
 fi
 
 
-fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
-
-
-# loop Homebrew packages
-# install whats not installed already
+#check Homebrew installation
 if ! check_installed brew; then
 	fancy_echo 31 "✘ Homebrew was not installed. Make sure brew is in your PATH. 
 Try running 'source ~/.bashrc' and rerunning Settled."
 	exit 1
 fi
 
+
+fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
+
+
+# loop Homebrew packages
+# install whats not installed already
 brew doctor
 BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
@@ -177,7 +166,20 @@ do
 done
 
 
-fancy_echo 32 "✔ All NPM packages installed, Moving on..."
+fancy_echo 32 "✔ All NPM packages installed, installing Sass and Compass..."
+
+
+# install Sass & Compass
+if ! check_installed_gem sass; then
+	sudo gem install sass
+fi
+
+if ! check_installed_gem compass; then
+	sudo gem install compass
+fi
+
+
+fancy_echo 32 "✔ Sass and Compass installed, Moving on..."
 
 
 # if on Linux:
