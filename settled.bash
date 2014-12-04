@@ -138,12 +138,13 @@ fancy_echo 32 "✔ Sass and Compass installed, Homebrew awesomeness coming up...
 
 # loop Homebrew packages
 # install whats not installed already
+brew doctor
+
 if ! check_installed brew; then
 	fancy_echo 31 "✘ Homebrew was not installed. Make sure you run Settled without sudo."
 	exit 1
 fi
 
-brew doctor
 BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
