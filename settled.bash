@@ -95,6 +95,8 @@ if ! check_installed zsh; then
 
 		# Oh-My-ZSH
 		wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+		
+		# set zsh as default shell
 		chsh -s "$(which zsh)"
 	else
 		# Mac OS X: install 'the easy way'
@@ -115,10 +117,17 @@ if ! check_installed brew; then
 		ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/linuxbrew/go/install)"
 		
 		# add homebrew to path
+		# in both bashrc and zshrc
 		echo "
 export PATH=\"$HOME/.linuxbrew/bin:$PATH\"
 export MANPATH=\"$HOME/.linuxbrew/share/man:$MANPATH\"
 export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.bashrc
+
+		echo "
+export PATH=\"$HOME/.linuxbrew/bin:$PATH\"
+export MANPATH=\"$HOME/.linuxbrew/share/man:$MANPATH\"
+export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.zshrc
+
 		source ~/.bashrc
 	else
 		# Mac OS X: install 'normal' homebrew
