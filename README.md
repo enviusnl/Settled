@@ -1,6 +1,6 @@
 Settled
 =======
-A Bash script that turns your Ubuntu machine installation into an awesome front-end development tool.
+A Bash script that turns your Ubuntu machine into an awesome front-end development tool.
 
 By default Settled installs the following packages and their dependencies:
 
