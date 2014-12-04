@@ -36,7 +36,7 @@ check_zsh_alias(){
 # throw error when the OS is not compatable
 if [ "$(uname)" == "Darwin" ]; then
   OS="Mac OS X"
-elif [ "${$(uname -s):0:5}" == "Linux" ]; then
+elif [ "$(uname)" == "Linux" ]; then
   OS="Linux"
 else
   fancy_echo 31 "✘ We're sorry but it looks like you're running an unknown OS.
@@ -46,7 +46,8 @@ and we'll look into it."
 fi
 
 
-printf "\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an \033[1;32mawesome front-end tool\033[0m.
+printf "\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into an 
+\033[1;32mawesome front-end tool\033[0m.
 
 What it installs can be customized by editing this file.
 By default it will install the following packages:
@@ -54,11 +55,12 @@ By default it will install the following packages:
 cURL, Vim, Oh-My-ZSH,
 Git, Phonegap, Heroku Toolbelt,
 Ruby, SASS, Compass, Node.js,
-Grunt-cli, Gulp, Bower, Yeoman,
+Grunt-cli, Gulp, Bower, Yeoman.
 
-If you're on Linux we will prompt you to ask if you also want to install:
+If you're on Linux we will prompt you to ask if you also would 
+like to install:
 
-Apache2, MySQL, PHP, Sublime Text 3
+Apache2, MySQL, PHP, Sublime Text 3.
 
 "
 ask_input "Continue? [y/n] "
