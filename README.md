@@ -10,6 +10,14 @@ Vim, Node.js, Heroku Toolbelt,
 Phonegap, Grunt-cli, Gulp, Bower, Yeoman,
 SASS, Compass.
 
+It will also prompt you to ask if you also would like to install:
+Apache2, MySQL, PHP, Sublime Text 3.
+
+And will set up the following aliases in your ~/.zshrc:
+* clr = clear
+* gac = g add -A && g commit
+* gacp = g add -A && g commit && g push 
+
 ## Compatibility
 Currently Settled is tested and stable for Ubuntu 14.04. The script includes code to also support Mac OS X but this hasn't been tested yet.
 
