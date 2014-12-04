@@ -232,7 +232,8 @@ want you to search for the code below and move index.php to the front of the lis
     DirectoryIndex \033[1;32mindex.php\033[0m index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
 
-Are you ready to move out!?"
+Are you ready to move out!?
+"
 
   	select yn in "Sir, yes sir!" "Cancel all of this and send me home!" "Nah dude, I'm gonna do this later..."; do
   		case $yn in
