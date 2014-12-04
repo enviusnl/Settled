@@ -1,19 +1,18 @@
 Settled
 =======
-A simple Bash script that turns your clean Ubuntu 14.04 installation into an awesome front-end tool.
+A simple Bash script that turns your clean Ubuntu 14.04 installation into an awesome front-end development tool.
 
-By default Settled installs:
+By default Settled installs the following packages and their dependencies:
 
-cURL, Vim, Oh-My-ZSH,
-Git, Phonegap, Heroku Toolbelt,
-Ruby, SASS, Compass, Node.js,
-Apache2, MySQL, PHP,
-Grunt-cli, Gulp, Bower, Yeoman,
-Sublime Text 3
+cURL, Git, Ruby,
+Oh-My-ZSH, Homebrew,
+Vim, Node.js, Heroku Toolbelt,
+Phonegap, Grunt-cli, Gulp, Bower, Yeoman,
+SASS, Compass.
 
 ## Usage
 ```
-wget -qO- https://raw.githubusercontent.com/enviusnl/Settled/master/settled.bash | bash
+wget https://raw.githubusercontent.com/enviusnl/Settled/master/settled.bash && bash settled.bash
 ```
 
 ## Customizing
