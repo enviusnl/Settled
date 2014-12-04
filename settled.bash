@@ -87,21 +87,7 @@ else
 fi
 
 
-# install Homebrew if not already installed
-if ! check_installed brew; then
-
-	if [ "$OS" == "Linux" ]; then
-		# install 'Linux' homebrew
-		ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/linuxbrew/go/install)"
-	else
-		# Mac OS X: install 'normal' homebrew
-		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	fi
-
-fi
-
-
-fancy_echo 32 "✔ Homebrew installed, installing oh-my-zsh..."
+fancy_echo 32 "✔ Homebrew dependencies installed, installing Oh-My-ZSH..."
 
 
 # install oh-my-zsh
@@ -133,18 +119,41 @@ if ! check_installed_gem compass; then
 fi
 
 
-fancy_echo 32 "✔ Sass and Compass installed, Homebrew awesomeness coming up..."
+fancy_echo 32 "✔ Sass and Compass installed, installing or updating Homebrew..."
+
+
+# install Homebrew if not already installed
+if ! check_installed brew; then
+
+	if [ "$OS" == "Linux" ]; then
+		# install 'Linux' homebrew
+		ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/linuxbrew/go/install)"
+		
+		# add homebrew to path
+		echo "
+export PATH=\"$HOME/.linuxbrew/bin:$PATH\"
+export MANPATH=\"$HOME/.linuxbrew/share/man:$MANPATH\"
+export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.bashrc
+	else
+		# Mac OS X: install 'normal' homebrew
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
+else
+	brew update
+fi
+
+
+fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
 
 
 # loop Homebrew packages
 # install whats not installed already
-brew doctor
-
 if ! check_installed brew; then
 	fancy_echo 31 "✘ Homebrew was not installed. Make sure you run Settled without sudo."
 	exit 1
 fi
 
+brew doctor
 BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
