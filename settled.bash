@@ -137,7 +137,7 @@ Try running 'source ~/.bashrc' and rerunning Settled."
 fi
 
 
-fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
+fancy_echo 32 "✔ Homebrew ready, brew awesomeness coming up..."
 
 
 # loop Homebrew packages
