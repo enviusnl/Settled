@@ -200,7 +200,8 @@ if [ "$OS" == "Linux" ]; then
   ask_input "apache2, mysql-server, php5-mysql, php5, libapache2-mod-php5,
 php5-mcrypt, sublime-text-installer
 
-Would you like to also install and setup the above apt-get packages? [y/n] "
+Would you like to also install and setup the above apt-get
+packages? [y/n] "
 
   if [ "$answer" == "y" ]; then
 
