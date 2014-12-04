@@ -88,19 +88,19 @@ fi
 fancy_echo 32 "✔ Homebrew dependencies installed, installing Oh-My-ZSH..."
 
 
-# install oh-my-zsh
-if [ "$OS" == "Linux" ]; then
-	# ZSH
-	if ! check_installed zsh; then
+# install oh-my-zsh if not installed already
+if ! check_installed zsh; then
+	if [ "$OS" == "Linux" ]; then
+		# ZSH
 		sudo apt-get install zsh
-	fi
 
-	# Oh-My-ZSH
-	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-	chsh -s `which zsh`
-else
-	# Mac OS X: install 'the easy way'
-	curl -L http://install.ohmyz.sh | sh
+		# Oh-My-ZSH
+		wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+		chsh -s `which zsh`
+	else
+		# Mac OS X: install 'the easy way'
+		curl -L http://install.ohmyz.sh | sh
+	fi
 fi
 
 
