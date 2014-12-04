@@ -62,14 +62,13 @@ If you're on Linux we will prompt you to ask if you also want to install:
 Apache2, MySQL, PHP, Sublime Text 3
 
 
-Continue?
 "
-select yn in Yes No; do
-  case $yn in
-    Yes) echo "Continuing..."; break;;
-    No) exit;;
-  esac
-done
+ask_input "Continue? [y/n] "
+if [ "$answer" == "y" ]; then
+  echo "Continuing..."
+else
+  exit
+fi
 
 
 if [ "$OS" == "Linux" ]; then
@@ -150,7 +149,7 @@ fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
 # loop Homebrew packages
 # install whats not installed already
 if ! check_installed brew; then
-	fancy_echo 31 "✘ Homebrew was not installed. Make brew is in your PATH."
+	fancy_echo 31 "✘ Homebrew was not installed. Make sure brew is in your PATH."
 	exit 1
 fi
 
@@ -187,7 +186,7 @@ if [ "$OS" == "Linux" ]; then
   ask_input "apache2, mysql-server, php5-mysql, php5, libapache2-mod-php5, php5-mcrypt,
   sublime-text-installer
 
-  Would you like to also install and setup the above apt-get packages? (y/n) "
+  Would you like to also install and setup the above apt-get packages? [y/n] "
 
   if [ "$answer" == "y" ]; then
 
