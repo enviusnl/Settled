@@ -58,10 +58,13 @@ Vim, Node.js, Heroku Toolbelt,
 Phonegap, Grunt-cli, Gulp, Bower, Yeoman,
 SASS, Compass.
 
-On Linux we will prompt you to ask if you also would like to install:
-
+On Linux it will prompt you to ask if you also would like to install:
 Apache2, MySQL, PHP, Sublime Text 3.
 
+And it will set up the following aliases in your ~/.zshrc:
+* clr = clear
+* gac = g add -A && g commit
+* gacp = g add -A && g commit && g push 
 "
 ask_input "Continue? [y/n] "
 if [ "$answer" == "y" ]; then
