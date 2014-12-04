@@ -150,7 +150,7 @@ fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
 # loop Homebrew packages
 # install whats not installed already
 if ! check_installed brew; then
-	fancy_echo 31 "✘ Homebrew was not installed. Make sure you run Settled without sudo."
+	fancy_echo 31 "✘ Homebrew was not installed. Make brew is in your PATH."
 	exit 1
 fi
 
