@@ -302,10 +302,10 @@ fi
 fancy_echo 32 "✔ Looks like we're done here."
 
 
-ask_input "Are you ready to start using your new superpowers?"
+ask_input "Are you ready to start using your new superpowers? [y/n] "
 if [ "$answer" == "y" ]; then
 	fancy_echo 35 "Switching to ZSH"
 	zsh
 else
-	echo "You will automatically switch to ZSH when you restart your machine."
+	fancy_echo 35 "You will automatically switch to ZSH when you restart your machine."
 fi
