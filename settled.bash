@@ -187,6 +187,9 @@ if ! check_installed_gem sass; then
 fi
 
 if ! check_installed_gem compass; then
+	if [ "$OS" == "Linux" ]; then
+		sudo apt-get install ruby-dev
+	fi
 	sudo gem install compass
 fi
 
