@@ -1,5 +1,5 @@
 fancy_echo(){
-	printf "\033[1;$1m$2\033[0m\n"
+	printf "\033[1;%sm%s\033[0m\n" "$1" "$2"
 }
 
 ask_input(){
@@ -8,7 +8,7 @@ ask_input(){
 }
 
 check_installed(){
-	if type $1 > /dev/null; then
+	if type "$1" > /dev/null; then
 		return 0
 	else
 		return 1
@@ -16,7 +16,7 @@ check_installed(){
 }
 
 check_installed_gem(){
-  if gem list $1 -i > /dev/null; then
+  if gem list "$1" -i > /dev/null; then
     return 0
   else
     return 1
@@ -36,7 +36,7 @@ check_zsh_alias(){
 # throw error when the OS is not compatable
 if [ "$(uname)" == "Darwin" ]; then
   OS="Mac OS X"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "${$(uname -s):0:5}" == "Linux" ]; then
   OS="Linux"
 else
   fancy_echo 31 "✘ We're sorry but it looks like you're running an unknown OS.
@@ -95,7 +95,7 @@ if ! check_installed zsh; then
 
 		# Oh-My-ZSH
 		wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-		chsh -s `which zsh`
+		chsh -s "$(which zsh)"
 	else
 		# Mac OS X: install 'the easy way'
 		curl -L http://install.ohmyz.sh | sh
