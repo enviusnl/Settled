@@ -52,10 +52,11 @@ printf "\033[1;32mSettled\033[0m will turn your Mac OS X or Ubuntu machine into 
 What it installs can be customized by editing this file.
 By default it will install the following packages and their dependencies:
 
-Homebrew, cURL, Vim, Oh-My-ZSH,
-Git, Phonegap, Heroku Toolbelt,
-Ruby, SASS, Compass, Node.js,
-Grunt-cli, Gulp, Bower, Yeoman.
+cURL, Git, Ruby,
+Oh-My-ZSH, Homebrew,
+Vim, Node.js, Heroku Toolbelt,
+Phonegap, Grunt-cli, Gulp, Bower, Yeoman,
+SASS, Compass.
 
 If you're on Linux we will prompt you to ask if you also would 
 like to install:
