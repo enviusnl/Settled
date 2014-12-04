@@ -188,7 +188,7 @@ if [ "$OS" == "Linux" ]; then
   ask_input "apache2, mysql-server, php5-mysql, php5, libapache2-mod-php5,
 php5-mcrypt, sublime-text-installer
 
-  Would you like to also install and setup the above apt-get packages? [y/n] "
+Would you like to also install and setup the above apt-get packages? [y/n] "
 
   if [ "$answer" == "y" ]; then
 
@@ -204,21 +204,19 @@ php5-mcrypt, sublime-text-installer
   	sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
 
   	# edit /var/www directory config. index.php has to be on start.
-  	printf "
+  	printf "Alright listen up soldier! We're going into the Apache config now. When you're in there I
+want you to search for the code below and move index.php to the front of the list.
 
-  	Alright listen up soldier! We're going into the Apache config now. When you're in there I
-  	want you to search for the code below and move index.php to the front of the list.
+<IfModule mod_dir.c>
+    DirectoryIndex index.html index.cgi index.pl \033[1;31mindex.php\033[0m index.xhtml index.htm
+</IfModule>
 
-  	<IfModule mod_dir.c>
-  	    DirectoryIndex index.html index.cgi index.pl \033[1;31mindex.php\033[0m index.xhtml index.htm
-  	</IfModule>
+<IfModule mod_dir.c>
+    DirectoryIndex \033[1;32mindex.php\033[0m index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
 
-  	<IfModule mod_dir.c>
-  	    DirectoryIndex \033[1;32mindex.php\033[0m index.html index.cgi index.pl index.xhtml index.htm
-  	</IfModule>
+Are you ready to move out!?"
 
-  	"
-  	echo "Are you ready to move out!?"
   	select yn in "Sir, yes sir!" "Cancel all of this and send me home!" "Nah dude, I'm gonna do this later..."; do
   		case $yn in
   			"Sir, yes sir!") sudo vi /etc/apache2/mods-enabled/dir.conf; break;;
