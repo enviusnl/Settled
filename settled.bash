@@ -47,7 +47,7 @@ fi
 
 
 printf "\033[1;32mSettled\033[0m will turn your Ubuntu 14.4 machine into an 
-\033[1;32mawesome front-end development tool\033[0m.
+\033[1;32mawesome development tool\033[0m.
 
 What it installs can be customized by editing this file.
 By default it will install the following packages and their dependencies:
