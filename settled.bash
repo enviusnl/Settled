@@ -133,7 +133,8 @@ if ! check_installed brew; then
 		echo "
 export PATH=\"$HOME/.linuxbrew/bin:$PATH\"
 export MANPATH=\"$HOME/.linuxbrew/share/man:$MANPATH\"
-export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.zshrc
+export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.bashrc
+		source ~/.bashrc
 	else
 		# Mac OS X: install 'normal' homebrew
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -145,9 +146,6 @@ fi
 
 fancy_echo 32 "✔ Homebrew installed, brew awesomeness coming up..."
 
-
-# switch to zsh shell
-zsh
 
 # loop Homebrew packages
 # install whats not installed already
