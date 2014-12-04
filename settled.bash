@@ -154,7 +154,7 @@ fancy_echo 32 "✔ Homebrew ready, brew awesomeness coming up..."
 # loop Homebrew packages
 # install whats not installed already
 brew doctor
-BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
+BREW_PKGS=("vim" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
 	if ! check_installed $name; then
