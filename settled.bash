@@ -188,6 +188,8 @@ fi
 
 if ! check_installed_gem compass; then
 	if [ "$OS" == "Linux" ]; then
+		# install ruby-dev to prevent
+		# failed to build gem native extension error
 		sudo apt-get install ruby-dev
 	fi
 	sudo gem install compass
@@ -297,4 +299,13 @@ if $ZSH_ALIASES_START; then
 fi
 
 
-fancy_echo 32 "✔ Looks like we're done here. Did everything go well? How about some tea?"
+fancy_echo 32 "✔ Looks like we're done here."
+
+
+ask_input "Are you ready to start using your new superpowers?"
+if [ "$answer" == "y" ]; then
+	fancy_echo 35 "Switching to ZSH"
+	zsh
+else
+	echo "You will automatically switch to ZSH when you restart your machine."
+fi
