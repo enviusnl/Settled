@@ -139,7 +139,7 @@ export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.bashrc
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
 else
-	sudo brew update
+	brew update
 fi
 
 
@@ -154,12 +154,12 @@ Try running 'source ~/.bashrc' and re-running Settled."
 	exit 1
 fi
 
-sudo brew doctor
+brew doctor
 BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
 	if ! check_installed $name; then
-		sudo brew install $name
+		brew install $name
 	fi
 done
 
@@ -173,7 +173,7 @@ NPM_PKGS=("grunt-cli" "gulp" "bower" "yo" "phonegap")
 for name in "${NPM_PKGS[@]}"
 do
 	if ! check_installed $name; then
-		sudo npm install -g $name
+		npm install -g $name
 	fi
 done
 
