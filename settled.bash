@@ -140,7 +140,7 @@ export INFOPATH=\"$HOME/.linuxbrew/share/info:$INFOPATH\"" >> ~/.bashrc
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
 else
-	brew update
+	sudo brew update
 fi
 
 
@@ -154,12 +154,12 @@ if ! check_installed brew; then
 	exit 1
 fi
 
-brew doctor
+sudo brew doctor
 BREW_PKGS=("vim" "git" "node" "heroku-toolbelt")
 for name in "${BREW_PKGS[@]}"
 do
 	if ! check_installed $name; then
-		brew install $name
+		sudo brew install $name
 	fi
 done
 
