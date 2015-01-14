@@ -201,8 +201,12 @@ if ! check_installed_gem susy; then
 	sudo gem install susy
 fi
 
+if ! check_installed_gem susy; then
+	sudo gem install breakpoint
+fi
 
-fancy_echo 32 "✔ Sass, Compass and Susy installed, Moving on..."
+
+fancy_echo 32 "✔ Sass, Compass, Susy and Breakpoint installed, Moving on..."
 
 
 # if on Linux:
