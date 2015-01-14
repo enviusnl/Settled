@@ -197,8 +197,12 @@ if ! check_installed_gem compass; then
 	sudo gem install compass
 fi
 
+if ! check_installed_gem susy; then
+	sudo gem install susy
+fi
 
-fancy_echo 32 "✔ Sass and Compass installed, Moving on..."
+
+fancy_echo 32 "✔ Sass, Compass and Susy installed, Moving on..."
 
 
 # if on Linux:
