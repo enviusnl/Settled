@@ -8,7 +8,7 @@ cURL, Git, Ruby,
 Oh-My-ZSH, Homebrew,
 Vim, Node.js, Heroku Toolbelt,
 Phonegap, Grunt-cli, Gulp, Bower, Yeoman,
-SASS, Compass.
+SASS, Compass, Susy, Breakpoint.
 
 It will also prompt you to ask if you also would like to install:
 Apache2, MySQL, PHP, Sublime Text 3.
